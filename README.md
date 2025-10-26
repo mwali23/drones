@@ -133,6 +133,17 @@ drones/
 - Input validation
 - Protected API routes for authenticated operations
 
+### Security Considerations for Production
+
+**Important:** This is a development/demonstration version. Before deploying to production, implement:
+
+- **Rate Limiting**: Add rate limiting middleware (e.g., `express-rate-limit`) to prevent DoS attacks on authentication and resource-intensive endpoints
+- **HTTPS/SSL**: Enable secure cookies by setting `cookie: { secure: true }` in session configuration and deploy behind HTTPS
+- **CSRF Protection**: Implement CSRF token validation using packages like `csurf` to protect against cross-site request forgery
+- **Input Sanitization**: Add additional input validation and sanitization for all user inputs
+- **Secure Headers**: Use `helmet` middleware to set security-related HTTP headers
+- **Environment Variables**: Never commit `.env` file with production secrets
+
 ## Future Enhancements
 
 - Payment processing integration

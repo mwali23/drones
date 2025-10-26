@@ -1,3 +1,15 @@
+/**
+ * Drone Community Marketplace - Server
+ * 
+ * SECURITY NOTE: This is a development/demonstration version.
+ * Before deploying to production, implement:
+ * - Rate limiting (express-rate-limit)
+ * - CSRF protection (csurf)
+ * - HTTPS with secure cookies
+ * - Additional input validation and sanitization
+ * - Security headers (helmet)
+ */
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
