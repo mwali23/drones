@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Community Marketplace</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>🚁 Drone Hub</h1>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" onclick="showSection('home')">Home</a>
+                    <a href="#services" onclick="showSection('services')">Services</a>
+                    <a href="#" id="authLink" onclick="showSection('auth')">Login / Register</a>
+                    <a href="#" id="profileLink" style="display: none;" onclick="showSection('profile')">My Profile</a>
+                    <a href="#" id="logoutLink" style="display: none;" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h2>Welcome to Drone Hub</h2>
+                <p>Your one-stop marketplace for drone services, development, parts, and merchandise</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search for drone services...">
+                    <button onclick="searchServices()">Search</button>
+                </div>
+            </div>
+
+            <div class="categories">
+                <h3>Browse by Category</h3>
+                <div class="category-grid">
+                    <div class="category-card" onclick="filterByCategory('Development')">
+                        <h4>Development</h4>
+                        <p>Custom drone software & apps</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Parts')">
+                        <h4>Parts</h4>
+                        <p>Components & replacement parts</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Services')">
+                        <h4>Services</h4>
+                        <p>Repair, setup & consulting</p>
+                    </div>
+                    <div class="category-card" onclick="filterByCategory('Merchandise')">
+                        <h4>Merchandise</h4>
+                        <p>Apparel & accessories</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="featuredServices">
+                <h3>Featured Services</h3>
+                <div id="servicesList" class="services-grid"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2>All Services</h2>
+            <div class="filter-bar">
+                <select id="categoryFilter" onchange="filterServices()">
+                    <option value="">All Categories</option>
+                    <option value="Development">Development</option>
+                    <option value="Parts">Parts</option>
+                    <option value="Services">Services</option>
+                    <option value="Merchandise">Merchandise</option>
+                </select>
+            </div>
+            <div id="allServicesList" class="services-grid"></div>
+        </section>
+
+        <!-- Auth Section -->
+        <section id="auth" class="section">
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="showAuthTab('login')">Login</button>
+                    <button class="tab-btn" onclick="showAuthTab('register')">Register</button>
+                </div>
+
+                <div id="loginForm" class="auth-form active">
+                    <h3>Login to Your Account</h3>
+                    <form onsubmit="login(event)">
+                        <input type="email" id="loginEmail" placeholder="Email" required>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+
+                <div id="registerForm" class="auth-form">
+                    <h3>Create an Account</h3>
+                    <form onsubmit="register(event)">
+                        <input type="text" id="registerUsername" placeholder="Username" required>
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                        <input type="password" id="registerPassword" placeholder="Password" required>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="profile-container">
+                <h2>My Profile</h2>
+                <div id="userInfo"></div>
+                
+                <div class="profile-section">
+                    <h3>Add New Service</h3>
+                    <form id="addServiceForm" onsubmit="addService(event)">
+                        <input type="text" id="serviceTitle" placeholder="Service Title" required>
+                        <textarea id="serviceDescription" placeholder="Description" rows="4" required></textarea>
+                        <select id="serviceCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Development">Development</option>
+                            <option value="Parts">Parts</option>
+                            <option value="Services">Services</option>
+                            <option value="Merchandise">Merchandise</option>
+                        </select>
+                        <input type="text" id="servicePrice" placeholder="Price (optional)">
+                        <button type="submit">Add Service</button>
+                    </form>
+                </div>
+
+                <div class="profile-section">
+                    <h3>My Services</h3>
+                    <div id="myServicesList" class="services-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Detail Modal -->
+        <div id="serviceModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="serviceDetail"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Drone Hub - Community Marketplace for Drone Enthusiasts</p>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
